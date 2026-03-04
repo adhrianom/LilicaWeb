@@ -1,69 +1,124 @@
 @import 'tailwindcss';
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --color-brand-pink: #f9a8d4;
+  --color-brand-blue: #bfdbfe;
+  --color-brand-white: #ffffff;
+  --color-brand-text: #111827;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #ffffff;
+  --space-section: clamp(1.25rem, 2vw, 2.5rem);
+  --space-container-x: clamp(1rem, 3vw, 2rem);
 
-  font-synthesis: none;
+  --radius-soft: 1rem;
+  --radius-pill: 9999px;
+}
+
+@theme {
+  --color-lilica-pink: var(--color-brand-pink);
+  --color-lilica-blue: var(--color-brand-blue);
+  --color-lilica-white: var(--color-brand-white);
+  --color-lilica-text: var(--color-brand-text);
+}
+
+@keyframes lilica-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lilica-soft-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@utility bg-lilica-pink {
+  background-color: var(--color-brand-pink);
+}
+
+@utility bg-lilica-blue {
+  background-color: var(--color-brand-blue);
+}
+
+@utility text-lilica {
+  color: var(--color-brand-text);
+}
+
+@utility section-gap {
+  margin-top: var(--space-section);
+  margin-bottom: var(--space-section);
+}
+
+@utility page-container {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+  padding-inline: var(--space-container-x);
+}
+
+@utility rounded-soft {
+  border-radius: var(--radius-soft);
+}
+
+@utility rounded-pill {
+  border-radius: var(--radius-pill);
+}
+
+@utility animate-lilica-in {
+  animation: lilica-fade-up 350ms ease-out both;
+}
+
+@utility animate-lilica-pulse {
+  animation: lilica-soft-pulse 1.8s ease-in-out infinite;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--color-brand-white);
+  color: var(--color-brand-text);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
